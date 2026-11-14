@@ -137,3 +137,15 @@ body:not(.dawn) header :focus-visible,body:not(.dawn) main :focus-visible{outlin
 /* Story panels keep their warm paper palette in either sky. */
 dialog{--ink:#4c4163;--pink:#87566d;--muted:#695775}
 .copy h1,.copy h2,.copy .eyebrow,.copy .opening,.copy .aside,.copy .progress,.world-caption,.sky-note,footer,.home-copy,.home-hint{transition:color 2.8s ease}
+/* A few passing wishes, staggered across a clipped, non-interactive sky. */
+.shooting-sky{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.shooting-sky .shooting{position:absolute;top:9%;left:12%;width:240px;height:3px;background:linear-gradient(90deg,transparent,#e8c6a080,#fff0cf);border-radius:50%;opacity:0;transform-origin:right center;box-shadow:0 0 6px #efcf9d30;animation:passing-wish 12s 2s linear infinite;--travel-x:240px;--travel-y:150px}
+.shooting-sky .shooting:after{content:'';position:absolute;right:-3px;top:-3px;width:9px;height:9px;border-radius:50%;background:#fff3d8;box-shadow:0 0 18px 5px #f4d7a290}
+.shooting-sky .shooting:nth-child(2){top:27%;left:64%;animation-delay:6s;--travel-x:210px;--travel-y:130px;width:205px}
+.shooting-sky .shooting:nth-child(3){top:65%;left:5%;animation-delay:10s;--travel-x:220px;--travel-y:140px;width:220px}
+@keyframes passing-wish{0%{opacity:0;transform:translate(0,0) rotate(32deg)}5.5%{opacity:.75}19.25%{opacity:.5}27.5%,100%{opacity:0;transform:translate(var(--travel-x),var(--travel-y)) rotate(32deg)}}
+@media(max-width:760px){.shooting-sky .shooting{width:155px;--travel-x:150px;--travel-y:94px}.shooting-sky .shooting:nth-child(2){left:48%;width:135px;--travel-x:140px;--travel-y:88px}.shooting-sky .shooting:nth-child(3){width:145px;--travel-x:145px;--travel-y:91px}}
+@media(prefers-reduced-motion:reduce){.shooting-sky{display:none}}
+/* An eight-point starburst leads each golden trail. */
+.shooting-sky .shooting:after{right:-7px;top:-7px;width:17px;height:17px;border-radius:0;clip-path:polygon(50% 0,58% 31%,80% 20%,69% 42%,100% 50%,69% 58%,80% 80%,58% 69%,50% 100%,42% 69%,20% 80%,31% 58%,0 50%,31% 42%,20% 20%,42% 31%);background:#fff3d8;box-shadow:none}
+.shooting-sky .shooting:before{content:'';position:absolute;right:-12px;top:-12px;width:27px;height:27px;border-radius:50%;background:radial-gradient(circle,#fff0c888,#f4d7a230 40%,transparent 72%);pointer-events:none}
