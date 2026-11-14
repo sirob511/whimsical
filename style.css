@@ -92,3 +92,48 @@ dialog:after{content:'';position:absolute;left:22px;top:13px;width:100px;height:
 .home-hint{font:italic 13px 'Cormorant Infant',Georgia,serif;letter-spacing:.2px;color:#705167;text-decoration:underline;text-decoration-color:#a88b9d80;text-underline-offset:3px;text-decoration-thickness:1px}
 .wordmark:hover,.wordmark:focus-visible{background:#fff9eeaa;border-color:#a88b9d99}
 @media(max-width:760px){.wordmark{gap:7px;padding:6px 8px;margin:-6px -8px}.wordmark .home-icon{width:22px;height:26px}.home-name{font-size:8px;letter-spacing:1.5px}.home-hint{font-size:12px}}
+/* Soft arrivals: reveal opacity only, so the words stay still as you read. */
+#intro:not([hidden]) > :not(#visit),#explore:not([hidden]) > *,#ending:not([hidden]) > *{animation:soft-arrival 1.15s cubic-bezier(.22,.61,.36,1) both;animation-delay:var(--arrival-delay,100ms)}
+#intro > .eyebrow,#explore > .eyebrow,#ending > .eyebrow{--arrival-delay:100ms}
+#intro > h1,#explore > h2,#ending > h2{--arrival-delay:200ms}
+#intro > .story-flourish,#explore > .story-flourish{--arrival-delay:300ms}
+#intro > .opening,#explore > .opening,#ending > .opening{--arrival-delay:380ms}
+#intro #visit{animation:soft-arrival 1.15s 460ms ease-out both,invitation-float 5.5s 1.6s ease-in-out infinite}
+#intro > .aside,#explore > .progress,#ending > .aside{--arrival-delay:540ms}
+#intro #visit:focus-visible{animation:invitation-float 5.5s ease-in-out infinite;opacity:1}
+.world{animation:soft-arrival 1.6s 150ms ease-out both}
+.planet{transition:transform 2s ease,opacity 1.4s ease}
+.planet.art-loading{opacity:0}
+.landmarks:not([hidden]){animation:soft-arrival 1s 250ms ease-out both}
+header,footer{animation:soft-arrival 1.1s ease-out both}
+dialog[open]{animation:soft-arrival 500ms ease-out both}
+dialog[open]::backdrop{animation:soft-arrival 450ms ease-out both}
+dialog.closing::backdrop{animation:soft-departure 240ms ease-in both}
+.close,.replay,.sound{transition:background-color .45s ease,border-color .45s ease,filter .45s ease}
+.close:hover{background:#efdadc}.replay:hover{color:#674355}
+/* Cross-fade the dawn wash instead of switching background gradients. */
+body.dawn{background:radial-gradient(ellipse at 74% 42%,#77608038,transparent 52%),linear-gradient(145deg,#26283f,#393750 52%,#514158)!important}
+body:before{inset:0;height:auto;border-radius:0;filter:none;background:radial-gradient(ellipse at 50% 55%,#ffe9b7,transparent 65%),linear-gradient(145deg,#f0dbe9,#f6ded4);opacity:0;transition:opacity 2.8s ease}
+body.dawn:before{opacity:1}
+@keyframes soft-arrival{from{opacity:0}to{opacity:1}}
+@keyframes soft-departure{from{opacity:1}to{opacity:0}}
+@media(prefers-reduced-motion:reduce){#intro #visit:focus-visible{animation:none}.planet.art-loading{opacity:1}}
+/* A true dusky night, with warm paper lettering and a luminous little world. */
+body{background:radial-gradient(ellipse at 74% 42%,#77608038,transparent 52%),linear-gradient(145deg,#26283f,#393750 52%,#514158)}
+body:not(.dawn){--ink:#f5eadb;--pink:#ecc2d0;--muted:#d2c6da}
+body:not(.dawn) #intro:before,body:not(.dawn) #explore:before{background:radial-gradient(ellipse,#302e4933,transparent 73%)}
+body:not(.dawn) .copy .eyebrow,body:not(.dawn) .copy .opening,body:not(.dawn) .copy .aside,body:not(.dawn) .copy .progress,body:not(.dawn) #intro .title-connector{color:#ded0e0}
+body:not(.dawn) .world-caption,body:not(.dawn) .sky-note,body:not(.dawn) footer{color:#d6c9da}
+body:not(.dawn) .wordmark{background:#fff3df08;border-color:#d5b9d047}
+body:not(.dawn) .wordmark:hover,body:not(.dawn) .wordmark:focus-visible{background:#fff3df14;border-color:#d5b9d080}
+body:not(.dawn) .home-hint{color:#ded0e0;text-decoration-color:#d5b9d080}
+body:not(.dawn) .wordmark .home-icon,body:not(.dawn) .sound>span:first-child{color:#ebc6c8}
+body:not(.dawn) .sound{background:#fff3df08;border-color:#d5b9d047}
+body:not(.dawn) .sound-dot{background:#d3bcd4}
+body:not(.dawn) .orbit{border-color:#d6bdd329}
+body:not(.dawn) .title-connector:before,body:not(.dawn) .title-connector:after{background:linear-gradient(90deg,transparent,#d9bdce99)}
+body:not(.dawn) .story-flourish,body:not(.dawn) .footer-flourish{filter:brightness(1.2)}
+body:not(.dawn) header :focus-visible,body:not(.dawn) main :focus-visible{outline-color:#efcf99}
+/* Story panels keep their warm paper palette in either sky. */
+dialog{--ink:#4c4163;--pink:#87566d;--muted:#695775}
+.copy h1,.copy h2,.copy .eyebrow,.copy .opening,.copy .aside,.copy .progress,.world-caption,.sky-note,footer,.home-copy,.home-hint{transition:color 2.8s ease}

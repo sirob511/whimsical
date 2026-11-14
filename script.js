@@ -28,14 +28,54 @@ const encounters = {
  mailbox:{kicker:'02 / THE MAILBOX',title:'For whoever finds this.',text:"<p>Dear whoever finds this,</p><p>I used to think a planet had to be big to be worth discovering. Then I spent a whole afternoon watching a bee try to land on a rose.</p><p>I hope you're having that kind of day.</p><p>Love,<br>the girl on the little planet.</p>",art:svg(`<path d="M148 202V282" stroke="#ae939e" stroke-width="9"/><path d="M58 212V139Q58 110 88 110H211Q239 110 239 139V212Z" fill="#b7899c" stroke="#d0a5b2" stroke-width="2"/><path d="M58 139Q58 110 88 110Q118 110 118 139V212" stroke="#654e6e" stroke-width="2"/><g class="letter"><path d="M100 45L229 54L217 181L90 173Z" fill="#f0dfc3" stroke="#c7ae91"/><path d="M113 78L208 84M111 94L202 100M109 110L205 116M107 126L176 130" stroke="#ac9292" stroke-width="2"/><path d="M150 150q-18-17-21-4q0 10 19 17q19-8 14-17q-5-9-12 4" fill="#c58a9b"/></g><path d="M118 172L239 172V212H118Z" fill="#a7758d" stroke="#d0a5b2"/><path d="M246 147V96H270V110H246" stroke="#d5b68b" stroke-width="3"/>`)},
  telescope:{kicker:'03 / THE TELESCOPE',title:'Written in the stars.',text:'<p>She was fairly sure the stars had moved. She decided to take it as a compliment.</p>',art:svg(`<circle cx="150" cy="145" r="113" fill="#151c37" stroke="#bca8ba"/><circle cx="150" cy="145" r="105" stroke="#bca8ba" stroke-opacity=".2"/><g fill="#d7c4aa"><circle cx="83" cy="92" r="1"/><circle cx="193" cy="62" r="1"/><circle cx="221" cy="177" r="1"/><circle cx="112" cy="221" r="1"/><circle cx="68" cy="163" r="1"/><circle cx="173" cy="207" r="1"/></g><path class="constellation" d="M103 191L149 139L92 100L84 147L149 139L207 93L217 145L149 139L193 195" stroke="#e1bf95" stroke-width="1.5"/>${[[103,191],[149,139],[92,100],[84,147],[207,93],[217,145],[193,195]].map(([x,y],i)=>`<g class="constellation-star" style="--delay:${i*.5}s"><circle cx="${x}" cy="${y}" r="7" fill="#ebc99e" opacity=".12"/><path d="M${x-4} ${y}h8M${x} ${y-4}v8" stroke="#f2d5ad" stroke-width="1.5"/></g>`).join('')}`)}
 };
-$('#visit').addEventListener('click',()=>{ $('#intro').hidden=true;$('#explore').hidden=false;$('.landmarks').hidden=false;document.body.classList.add('visiting');$('#explore-title').focus(); });
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let sceneChanging = false;
+async function transitionScene(update){
+ if(sceneChanging)return;
+ sceneChanging=true;
+ const scene=$('.experience');
+ const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+ try{
+  if(!reducedMotion.matches){
+   scene.style.transition='opacity 220ms ease-in';
+   scene.style.opacity='0';
+   await wait(220);
+  }
+  update();
+  scene.style.transition='opacity 650ms ease-out';
+  scene.style.opacity='1';
+  if(!reducedMotion.matches)await wait(650);
+ }finally{scene.style.removeProperty('opacity');scene.style.removeProperty('transition');sceneChanging=false;}
+}
+// Fade in the illustration only once its local image has decoded.
+const planetArt=$('.planet');
+if(!planetArt.complete){
+ planetArt.classList.add('art-loading');
+ const revealArt=()=>planetArt.classList.remove('art-loading');
+ planetArt.addEventListener('load',revealArt,{once:true});
+ planetArt.addEventListener('error',revealArt,{once:true});
+}
+$('#visit').addEventListener('click',()=>transitionScene(()=>{ $('#intro').hidden=true;$('#explore').hidden=false;$('.landmarks').hidden=false;document.body.classList.add('visiting');$('#explore-title').focus(); }));
 function renderEncounter(){const item=encounters[currentPlace];$('#encounter-kicker').textContent=item.kicker;$('#encounter-title').textContent=item.title;$('#encounter-text').innerHTML=item.text;$('#encounter-art').innerHTML=item.art;}
 document.querySelectorAll('[data-place]').forEach(button=>button.addEventListener('click',()=>{currentPlace=button.dataset.place;returnFocus=button;renderEncounter();$('#encounter').showModal();$('.close').focus();}));
-function closeEncounter(){ $('#encounter').close(); finishEncounter(); }
+let encounterClosing=false;
+async function closeEncounter(){
+ if(encounterClosing||!$('#encounter').open)return;
+ encounterClosing=true;
+ const dialog=$('#encounter');
+ if(!reducedMotion.matches){
+  dialog.classList.add('closing');
+  await dialog.animate([{opacity:1},{opacity:0}],{duration:240,easing:'ease-in'}).finished;
+ }
+ dialog.close();
+ dialog.classList.remove('closing');
+ encounterClosing=false;
+ finishEncounter();
+}
 $('#encounter').addEventListener('cancel', event=>{event.preventDefault();closeEncounter();});
 $('.close').addEventListener('click',closeEncounter);$('#back').addEventListener('click',closeEncounter);$('#replay').addEventListener('click',renderEncounter);
-function finishEncounter(){visited.add(currentPlace);document.querySelectorAll('.places button').forEach(b=>{const done=visited.has(b.dataset.place);b.classList.toggle('done',done);b.setAttribute('aria-label',`${encounters[b.dataset.place].kicker.split(' / ')[1].toLowerCase()}${done?', discovered — replay':''}`);});$('.progress').textContent=`${visited.size} of 3 little wonders discovered`;if(visited.size===3){$('#explore').hidden=true;$('#ending').hidden=false;document.body.classList.add('dawn');$('#ending-title').focus();}else{returnFocus.focus();}}
-$('#reset').addEventListener('click',()=>{visited.clear();document.body.classList.remove('dawn');$('#ending').hidden=true;$('#explore').hidden=false;document.querySelectorAll('.places button').forEach(b=>{b.classList.remove('done');b.removeAttribute('aria-label');});$('.progress').textContent='0 of 3 little wonders discovered';$('#explore-title').focus();});
+function finishEncounter(){visited.add(currentPlace);document.querySelectorAll('.places button').forEach(b=>{const done=visited.has(b.dataset.place);b.classList.toggle('done',done);b.setAttribute('aria-label',`${encounters[b.dataset.place].kicker.split(' / ')[1].toLowerCase()}${done?', discovered — replay':''}`);});$('.progress').textContent=`${visited.size} of 3 little wonders discovered`;if(visited.size===3){transitionScene(()=>{$('#explore').hidden=true;$('#ending').hidden=false;document.body.classList.add('dawn');$('#ending-title').focus();});}else{returnFocus.focus();}}
+$('#reset').addEventListener('click',()=>transitionScene(()=>{visited.clear();document.body.classList.remove('dawn');$('#ending').hidden=true;$('#explore').hidden=false;document.querySelectorAll('.places button').forEach(b=>{b.classList.remove('done');b.removeAttribute('aria-label');});$('.progress').textContent='0 of 3 little wonders discovered';$('#explore-title').focus();}));
 const music=$('#music');let soundOn=false,fadeFrame=0,soundVersion=0;
 function fade(target,after){cancelAnimationFrame(fadeFrame);const start=music.volume,t0=performance.now();function tick(t){const p=Math.min(1,(t-t0)/800);music.volume=start+(target-start)*p;if(p<1)fadeFrame=requestAnimationFrame(tick);else if(after)after();}fadeFrame=requestAnimationFrame(tick);}
 function soundUI(){ $('#sound').setAttribute('aria-pressed',String(soundOn));$('#sound-label').textContent=soundOn?'Sound on':'Sound off'; }
