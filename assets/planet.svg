@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 640" fill="none">
+<style>.ribbon{transform-origin:313px 139px;animation:lift 7s ease-in-out infinite}@keyframes lift{50%{transform:rotate(5deg)}}@media(prefers-reduced-motion:reduce){.ribbon{animation:none}}</style><defs>
+<radialGradient id="planet" cx=".35" cy=".2" r=".8"><stop stop-color="#c9b7d1"/><stop offset=".45" stop-color="#aa98bc"/><stop offset=".8" stop-color="#7e739b"/><stop offset="1" stop-color="#514f76"/></radialGradient>
+<linearGradient id="glass" x2="1" y2="1"><stop stop-color="#b6c4cf" stop-opacity=".65"/><stop offset="1" stop-color="#596e8b" stop-opacity=".7"/></linearGradient>
+<linearGradient id="dress"><stop stop-color="#e8c5b7"/><stop offset="1" stop-color="#b88094"/></linearGradient>
+<filter id="water"><feTurbulence type="fractalNoise" baseFrequency=".028" numOctaves="3" seed="8" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+<clipPath id="clip"><path d="M133 336C135 246 227 204 338 210C442 207 549 260 572 348C603 452 499 528 380 534C261 549 137 493 128 407C124 383 128 356 133 336Z"/></clipPath>
+</defs>
+<!-- irregular washes of a little world -->
+<path d="M133 336C135 246 227 204 338 210C442 207 549 260 572 348C603 452 499 528 380 534C261 549 137 493 128 407C124 383 128 356 133 336Z" fill="url(#planet)" filter="url(#water)"/>
+<g clip-path="url(#clip)"><path d="M112 327Q262 241 418 296T591 345L620 215H110Z" fill="#dfc7d7" opacity=".3" filter="url(#water)"/><path d="M129 424Q255 482 358 434T579 401L595 560H100Z" fill="#6d648b" opacity=".25" filter="url(#water)"/><path d="M172 350Q285 395 398 330T548 333" stroke="#e0c6d4" stroke-width="18" opacity=".12" filter="url(#water)"/><ellipse cx="329" cy="387" rx="240" ry="168" opacity=".14" filter="url(#grain)" fill="#b6a6c4"/></g>
+<path d="M137 335C148 251 235 208 338 212C448 210 542 270 566 340" stroke="#e7cfda" stroke-opacity=".45"/>
+<!-- contour marks, pebbles, tiny flora -->
+<g stroke="#59536e" stroke-width="1" opacity=".6"><path d="M166 358q18-12 38-7m235 61q25 10 43-4M237 476q12 5 21 0M457 474l8-3m-203-63l11-3m-85 20l12 2m208 70l13-1M470 337q12-4 20 3M192 301l8-4M314 506l14 1"/><ellipse cx="227" cy="375" rx="6" ry="3"/><ellipse cx="464" cy="451" rx="4" ry="2"/><ellipse cx="301" cy="454" rx="3" ry="2"/></g>
+<g stroke="#70667f" stroke-width="1.4" stroke-linecap="round"><path d="M183 327l-3-18m3 11l6-7m-7 2l-7-5M485 359l2-21m-1 9l-8-8m9 3l6-7M278 304l-2-15m2 9l5-6M423 286l2-16m0 7l6-6"/></g>
+<g fill="#dcb6c6"><circle cx="179" cy="308" r="3"/><circle cx="189" cy="313" r="2"/><circle cx="478" cy="339" r="3"/><circle cx="493" cy="334" r="3"/><circle cx="431" cy="271" r="2"/></g>
+<!-- glasshouse -->
+<g stroke="#514f66" stroke-width="1.8" stroke-linejoin="round"><path d="M182 255L181 177L225 132L276 174L276 252L229 272Z" fill="url(#glass)"/><path d="M181 177L229 193L276 174M225 132L229 193L229 272M182 255L229 272L276 252"/><path d="M203 157L252 184L252 262M203 185L203 262M181 215L229 233L276 214" stroke="#a9a2ad"/><path d="M214 267L214 219L240 223L240 267" fill="#778a9b" fill-opacity=".4"/><path d="M176 258L230 278L281 255" stroke="#d5b2ad" stroke-width="5"/><path d="M177 176L225 127L281 173" stroke="#c5b0b4" stroke-width="4"/></g>
+<g stroke="#64716e" stroke-width="2"><path d="M194 249l2-29m0 17q-16-3-10-14q11 1 10 14m0-7q12-1 12-12q-12 1-12 12M257 247l1-42m0 25q-13-2-12-13q13 0 12 13m0-9q12-3 10-13q-10 0-10 13"/></g><path d="M187 244h17l-3 12h-11zM249 242h17l-3 12h-11z" fill="#ae7c7d" stroke="#66596d"/><circle cx="258" cy="204" r="6" fill="#d9a0b1"/>
+<!-- girl, ink-lined hair and rose dress -->
+<g stroke="#564754" stroke-width="1.6" stroke-linejoin="round"><path d="M333 223l-2 29l-8 16m22-44l4 31l7 12" stroke="#dcbcae" stroke-width="5"/><path d="M322 267l-5 2l12 1m26-3l8 2h-11"/><path d="M330 164Q321 190 313 224Q337 238 359 224L346 165Z" fill="url(#dress)"/><path d="M331 169l-15 20l-11-8m39-12l12 18l12-6" stroke="#d9b1a4" stroke-width="5"/><path d="M333 152l1 15h9l-2-17" fill="#e3bdab"/><path d="M350 141q0 21-14 20q-14-3-12-20q4-15 16-12q12 1 10 12" fill="#e7c5b3"/><path d="M325 151q-13-18 1-28q14-9 24 3q9 10-1 24l-2-15q-11 9-22 0Z" fill="#625267"/><path d="M326 128q-10 21-4 31"/><path d="M334 176l-5 44m13-40l7 44" opacity=".3"/></g>
+<!-- long ribbon -->
+<path d="M325 137Q298 115 286 135Q280 145 302 146Q334 142 314 125Q302 114 309 137Q287 154 271 142Q256 131 240 142" stroke="#d5a0ae" stroke-width="5" stroke-linecap="round"/>
+<path class="ribbon" d="M313 139Q294 171 269 158Q251 151 240 163" stroke="#b78098" stroke-width="4" stroke-linecap="round"></path>
+<!-- mailbox -->
+<g stroke="#62536b" stroke-width="1.7" stroke-linejoin="round"><path d="M391 252l-1 53" stroke="#b49a9a" stroke-width="7"/><path d="M373 254v-25q0-17 15-17h20q13 0 13 17v25Z" fill="#bd8d9c"/><path d="M373 254h27v-25q0-17-13-17m13 23h21"/><path d="M379 234h15" stroke="#514659"/><path d="M417 230v-26h14v9h-14" stroke="#d5af92" stroke-width="3"/><path d="M381 305l18 1"/></g>
+<!-- brass telescope -->
+<g stroke="#5e5065" stroke-width="2" stroke-linejoin="round"><path d="M483 249l-21 52m21-52l18 57m-18-57l-2 53" stroke="#b49892" stroke-width="4"/><path d="M476 245l8-23" stroke="#b9a193" stroke-width="6"/><path d="M456 233l-7-14l53-28l10 19Z" fill="#bda17e"/><path d="M499 188l8-4l14 25l-10 5Z" fill="#d9bd8e"/><path d="M450 218l-10 5l7 13l10-4" fill="#8b7f86"/><path d="M465 210l9 17" stroke="#e1c9a2"/><path d="M479 251h12"/></g>
+<!-- distant moon and hand-drawn starlight -->
+<path d="M553 115q-22 18 2 32q-35 3-28-22q5-11 26-10" fill="#e1c49b" opacity=".8"/>
+<g stroke="#d7bd9c" stroke-width="1" opacity=".8"><path d="M147 122v13m-6-6h12M586 278v12m-6-6h12M414 99v8m-4-4h8M107 435v10m-5-5h10M538 500v10m-5-5h10"/></g>
+<g fill="#d7bd9c" opacity=".7"><circle cx="113" cy="223" r="1.7"/><circle cx="454" cy="146" r="1.5"/><circle cx="591" cy="395" r="1.3"/><circle cx="239" cy="83" r="1.5"/><circle cx="414" cy="566" r="1.2"/></g>
+</svg>
