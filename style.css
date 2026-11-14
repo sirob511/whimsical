@@ -52,3 +52,43 @@ dialog:after{content:'';position:absolute;left:22px;top:13px;width:100px;height:
 @keyframes little-world-drift{0%,100%{translate:0 0;opacity:.45}50%{translate:3px -7px;opacity:.65}}
 @media(max-width:760px){.sky-planet{width:calc(var(--planet-size)*.75);height:calc(var(--planet-size)*.75)}.stars .star.cross{max-width:11px;max-height:11px}}
 @media(prefers-reduced-motion:reduce){.stars .star,.sky-planet{animation:none;opacity:.5}}
+/* Compose the opening as a centered storybook title page. */
+#intro{width:100%;max-width:460px;justify-self:center;text-align:center;padding:0 12px;position:relative;isolation:isolate}
+#intro:before{content:'';position:absolute;inset:-35px -25px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,#e8e2efb3 15%,#e8e2ef55 52%,transparent 73%)}
+#intro .eyebrow{font-family:'Cormorant Infant',Georgia,serif;font-size:18px;font-weight:500;letter-spacing:.4px;line-height:1.4;margin:0 0 22px}
+#intro h1{margin:0;line-height:1;letter-spacing:-1px}
+.title-first,.title-last{display:block;white-space:nowrap}
+#intro .title-first{font-size:clamp(62px,6vw,88px);font-weight:500}
+#intro .title-connector{display:flex;align-items:center;justify-content:center;gap:13px;margin:4px 0 2px;font-size:25px;font-style:italic;font-weight:400;line-height:1.1;letter-spacing:0;color:#806681}
+.title-connector:before,.title-connector:after{content:'';width:29px;height:1px;background:linear-gradient(90deg,transparent,#ad8b9c80)}
+.title-connector:after{transform:scaleX(-1)}
+#intro .title-last{font-size:clamp(70px,6.7vw,98px);font-weight:500;line-height:.98}
+#intro .story-flourish{width:145px;height:32px;margin:18px auto 20px}
+#intro .opening{font-family:'Cormorant Infant',Georgia,serif;font-size:24px;font-weight:500;line-height:1.35;letter-spacing:0;margin:0 auto 29px;max-width:310px}
+#intro #visit{vertical-align:middle}
+#intro .aside{font-family:'Cormorant Infant',Georgia,serif;font-size:17px;font-weight:500;line-height:1.4;margin:19px 0 0}
+@media(min-width:761px) and (max-width:1000px){#intro{padding:0}#intro .title-first{font-size:62px}#intro .title-last{font-size:70px}#intro .eyebrow{font-size:16px}#intro .opening{font-size:22px}#intro #visit{padding:12px 18px;gap:8px}#intro #visit .visit-label{font-size:21px}}
+@media(max-width:760px){#intro{padding:0;max-width:400px}#intro .eyebrow{font-size:17px;margin-bottom:20px}#intro .title-first{font-size:70px}#intro .title-last{font-size:80px}#intro .title-connector{font-size:22px;margin:3px 0}#intro .story-flourish{margin:15px auto 16px;width:130px;height:28px}#intro .opening{font-size:23px;margin-bottom:25px}#intro .aside{font-size:16px;margin-top:17px}}
+@media(max-width:350px){#intro .title-first{font-size:63px}#intro .title-last{font-size:73px}#intro .eyebrow{font-size:16px}#intro .opening{font-size:22px}}
+/* The welcome is a companion title page to the opening. */
+.visiting #explore{width:100%;max-width:460px;text-align:center;padding:0 12px;position:relative;isolation:isolate}
+#explore:before{content:'';position:absolute;inset:-35px -25px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,#e8e2efb3 15%,#e8e2ef55 52%,transparent 73%)}
+.visiting #explore .eyebrow{font-family:'Cormorant Infant',Georgia,serif;font-size:18px;font-weight:500;letter-spacing:.4px;line-height:1.4;margin:0 0 22px}
+.visiting #explore h2{font-size:clamp(48px,4.3vw,64px);line-height:1.12;letter-spacing:-1px;margin:0;font-weight:500}
+.welcome-first,.welcome-last{display:block;white-space:nowrap}
+.welcome-last{margin-top:5px}
+#explore .story-flourish{width:145px;height:32px;margin:21px auto 20px}
+.visiting #explore .opening{font-family:'Cormorant Infant',Georgia,serif;font-size:24px;font-weight:500;line-height:1.35;letter-spacing:0;margin:0 auto;max-width:340px}
+.visiting #explore .opening br{display:block}
+#explore .progress{font-family:'Cormorant Infant',Georgia,serif;font-size:17px;font-weight:500;line-height:1.4;margin:23px 0 0}
+@media(min-width:1400px){.visiting #explore{width:40%;flex-shrink:0}}
+@media(max-width:760px){.visiting #explore{padding:0;max-width:400px}.visiting #explore .eyebrow{font-size:17px;margin-bottom:18px}.visiting #explore h2{font-size:clamp(42px,12vw,52px)}#explore .story-flourish{width:130px;height:28px;margin:15px auto 16px}.visiting #explore .opening{font-size:23px}#explore .progress{font-size:16px;margin-top:18px}}
+@media(max-width:350px){.visiting #explore h2{font-size:40px}.visiting #explore .opening{font-size:21px}}
+/* A visible way back to the first page of the story. */
+.wordmark{gap:10px;padding:7px 10px;margin:-7px -10px;border:1px solid #a88b9d40;border-radius:8px 12px 9px 11px;background:#fff9ee38;transition:background-color .4s,border-color .4s}
+.wordmark .home-icon{width:26px;height:29px;flex-shrink:0;color:#906b78}
+.wordmark .home-copy{display:grid;gap:5px;color:var(--ink);font-size:inherit}
+.home-name{font:10px Arial,sans-serif;letter-spacing:2.5px}
+.home-hint{font:italic 13px 'Cormorant Infant',Georgia,serif;letter-spacing:.2px;color:#705167;text-decoration:underline;text-decoration-color:#a88b9d80;text-underline-offset:3px;text-decoration-thickness:1px}
+.wordmark:hover,.wordmark:focus-visible{background:#fff9eeaa;border-color:#a88b9d99}
+@media(max-width:760px){.wordmark{gap:7px;padding:6px 8px;margin:-6px -8px}.wordmark .home-icon{width:22px;height:26px}.home-name{font-size:8px;letter-spacing:1.5px}.home-hint{font-size:12px}}
