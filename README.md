@@ -4,7 +4,7 @@ Open `index.html` by double-clicking it. Keep `style.css`, `script.js`, and `ass
 
 Optional local server: run `python3 -m http.server 8000` in this folder, then open http://localhost:8000.
 
-Build: none. To distribute, copy or zip `index.html`, `style.css`, `script.js`, and `assets/` together, preserving their relative paths. The same files can be uploaded to any static host.
+Build: none. To distribute, copy or zip `index.html`, `style.css`, `script.js`, `sitemap.xml`, `robots.txt`, and `assets/` together, preserving their relative paths. The same files can be uploaded to any static host. The sitemap and robots file use the production address `https://whimsical-drab.vercel.app/`; update both if the domain changes.
 
 ## Controls
 
