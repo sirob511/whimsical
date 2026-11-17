@@ -81,7 +81,7 @@ dialog:after{content:'';position:absolute;left:22px;top:13px;width:100px;height:
 .visiting #explore .opening{font-family:'Cormorant Infant',Georgia,serif;font-size:24px;font-weight:500;line-height:1.35;letter-spacing:0;margin:0 auto;max-width:340px}
 .visiting #explore .opening br{display:block}
 #explore .progress{font-family:'Cormorant Infant',Georgia,serif;font-size:17px;font-weight:500;line-height:1.4;margin:23px 0 0}
-@media(min-width:1400px){.visiting #explore{width:40%;flex-shrink:0}}
+@media(min-width:1400px){.visiting #explore,.visiting #ending{width:40%;max-width:460px;flex-shrink:0}.visiting .world{margin-top:-5px}}
 @media(max-width:760px){.visiting #explore{padding:0;max-width:400px}.visiting #explore .eyebrow{font-size:17px;margin-bottom:18px}.visiting #explore h2{font-size:clamp(42px,12vw,52px)}#explore .story-flourish{width:130px;height:28px;margin:15px auto 16px}.visiting #explore .opening{font-size:23px}#explore .progress{font-size:16px;margin-top:18px}}
 @media(max-width:350px){.visiting #explore h2{font-size:40px}.visiting #explore .opening{font-size:21px}}
 /* A visible way back to the first page of the story. */
