@@ -1,0 +1,19 @@
+Asset: og-image.png
+Tool: built-in image_gen; no runtime generation or API.
+Reference: storybook-planet.png
+Export: opaque RGB PNG, resized to 1200 x 630 for social sharing.
+Final generation prompt:
+Use case: ads-marketing.
+Asset type: final website Open Graph social sharing card.
+Create one polished horizontal 1200 by 630 pixel image, aspect ratio 1.90476:1, for the existing website "A Planet of Her Own".
+Input image: /home/boris/whimsical/assets/storybook-planet.png is the existing website's illustration and a supporting compositing input. Preserve its recognizable storybook character, glass rose greenhouse, pink mailbox, brass telescope, little lavender planet, moon and flowers, keeping the entire planet visible. Use this artwork on the right half of the card, scaled to fit with comfortable margins. Do not add new characters.
+Background: fully opaque dusky gradient in muted deep indigo #26283f at upper left through #393750 to dusty plum #514158 at lower right, soft subtle paper grain, sparse tiny warm-cream and gold stars, soft warm glow behind the planet. No panels, no UI buttons, no browser chrome.
+Composition: spacious elegant children's storybook title page, title on the left, complete luminous illustrated planet on the right; balanced legibility at social thumbnail size; all important elements at least 50 pixels inside the canvas; generous negative space. Subtle fine curved orbit line behind the planet is optional.
+Typography: graceful literary high-contrast serif similar to Cormorant Infant, warm cream #f5eadb for "A Planet", delicate small italic "of" on its own line, large italic dusty blush #ecc2d0 for "Her Own.". Center-align the three title lines within the left half. Title must be dominant and highly readable. A very small refined floral flourish below title.
+Exact title text, three lines:
+"A Planet"
+"of"
+"Her Own."
+Smaller legible italic tagline below title:
+"a tiny place for your heart to land"
+No other text. No watermark. Match the illustration's soft watercolor and colored-pencil texture. Refined, tender, magical, cohesive with a night-sky storybook website. Output the finished complete social sharing card at 1200x630.

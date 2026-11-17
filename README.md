@@ -16,6 +16,8 @@ Sound starts off. “Sound off” enables the original local music-box compositi
 
 The storybook planet was created with the built-in image-generation tool and bundled locally as `assets/storybook-planet.png`. The SVG encounter artwork and the original 48-second music-box composition were created for this project. See `assets/artwork-notes.txt` for the generation prompt. Cormorant Infant is bundled locally under the SIL Open Font License (`assets/fonts/OFL.txt`), with Georgia and Arial for body text and controls. Nothing is downloaded at runtime. The artwork uses layered washes, irregular contours, fine ink strokes, and local procedural paper grain.
 
+The social sharing image is `assets/og-image.png`, an opaque 1200 × 630 PNG created with the built-in image-generation tool using the planet artwork as a reference. Its prompt is saved in `assets/og-image-notes.txt`. Open Graph and Twitter card tags in `index.html` reference the production URL; update those URLs if the domain changes.
+
 ## Verification
 
 Checked in Chromium using a direct `file://` URL at 320, 375, 768, and 1440px widths: no horizontal overflow; all three encounters, replay, Escape, dialog keyboard focus wrapping, dawn, reset, and local audio toggling passed without JavaScript errors. Reduced-motion mode disables the constellation animation. Text/background contrast checks exceeded WCAG AA's 4.5:1 threshold for normal text, including the pale twilight and dawn palettes. Phone and desktop screenshots were visually inspected. Other browser engines and assistive technologies were not independently tested.
