@@ -149,3 +149,33 @@ dialog{--ink:#4c4163;--pink:#87566d;--muted:#695775}
 /* An eight-point starburst leads each golden trail. */
 .shooting-sky .shooting:after{right:-7px;top:-7px;width:17px;height:17px;border-radius:0;clip-path:polygon(50% 0,58% 31%,80% 20%,69% 42%,100% 50%,69% 58%,80% 80%,58% 69%,50% 100%,42% 69%,20% 80%,31% 58%,0 50%,31% 42%,20% 20%,42% 31%);background:#fff3d8;box-shadow:none}
 .shooting-sky .shooting:before{content:'';position:absolute;right:-12px;top:-12px;width:27px;height:27px;border-radius:50%;background:radial-gradient(circle,#fff0c888,#f4d7a230 40%,transparent 72%);pointer-events:none}
+.primary,#visit,.places button,.sound,.close,.replay,.wordmark{min-height:44px;cursor:pointer;touch-action:manipulation;transform:translateY(var(--button-offset,0px)) rotate(var(--button-angle,0deg));box-shadow:0 var(--button-depth,3px) 0 var(--button-edge,#b08b9e),0 7px 18px #20192b25,inset 0 1px 0 #fff9ecc4;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,border-color .16s ease,filter .16s ease}
+.primary,#visit{--button-depth:5px;--button-edge:#9d617c;background:radial-gradient(ellipse at 35% 15%,#fff4e8aa,transparent 70%),linear-gradient(155deg,#ffe5dd,#e8b2c7);border-color:#98617c;color:#59364e;font-weight:600}
+#visit{--button-angle:-1deg}
+#visit .visit-label{font-weight:700}
+#visit:after{border-color:#a16a8580}
+.places button{--button-edge:#a47d92;border-color:#ac8098;background:linear-gradient(145deg,#fffaf0,#f2dfd7);color:#5d415a}
+.places button b{font-weight:600}
+.sound,.close,.replay{border:1px solid #ac8098;background:#fff1e5;color:#674355}
+.sound{font-weight:600}
+.replay{min-width:44px;padding:10px 15px;border-radius:8px 12px 9px 11px;font-weight:600}
+.close{min-width:44px}
+.wordmark{background:#fff3e2;border-color:#b58b9f}
+body:not(.dawn) .sound,body:not(.dawn) .wordmark{--button-edge:#1b1c30;background:#51445f;border-color:#ad91af;color:#fff1e2}
+body:not(.dawn){--control-focus:#efcf99}
+dialog{--control-focus:#80517b}
+.sound[aria-pressed=true]{background:#edd6e1;border-color:#95617e}
+body:not(.dawn) .sound[aria-pressed=true]{background:#72556d;border-color:#edbfd1}
+body:not(.dawn) .sound[aria-pressed=true] .sound-dot{background:#f7d99e;box-shadow:0 0 9px #f7d99e99}
+.dialog-actions{flex-wrap:wrap;gap:14px}
+.primary:focus-visible,#visit:focus-visible,.places button:focus-visible,.sound:focus-visible,.close:focus-visible,.replay:focus-visible,.wordmark:focus-visible{--button-offset:-2px;transform:translateY(var(--button-offset)) rotate(var(--button-angle,0deg));outline:3px solid var(--control-focus,#80517b);outline-offset:5px;filter:brightness(1.06);box-shadow:0 6px 0 var(--button-edge,#b08b9e),0 11px 22px #20192b33,inset 0 1px 0 #fff9ece6}
+body:not(.dawn) .wordmark:focus-visible{background:#62516e;border-color:#d5b9d0}
+#intro #visit:focus-visible{animation:none;translate:0;opacity:1}
+@media(hover:hover) and (pointer:fine){
+ .primary:hover,#visit:hover,.places button:hover,.sound:hover,.close:hover,.replay:hover,.wordmark:hover{--button-offset:-2px;transform:translateY(var(--button-offset)) rotate(var(--button-angle,0deg));filter:brightness(1.06);box-shadow:0 6px 0 var(--button-edge,#b08b9e),0 11px 22px #20192b33,inset 0 1px 0 #fff9ece6}
+ #intro #visit:hover{animation-play-state:running,paused}
+ body:not(.dawn) .wordmark:hover{background:#62516e;border-color:#d5b9d0}
+}
+.primary:active,#visit:active,.places button:active,.sound:active,.close:active,.replay:active,.wordmark:active{--button-offset:3px;transform:translateY(var(--button-offset)) rotate(var(--button-angle,0deg));filter:brightness(.98);box-shadow:0 1px 0 var(--button-edge,#b08b9e),0 3px 8px #20192b20,inset 0 2px 4px #59344322}
+#intro #visit:active{animation-play-state:running,paused}
+@media(prefers-reduced-motion:reduce){.primary,#visit,.places button,.sound,.close,.replay,.wordmark{transform:none!important}}
