@@ -34,6 +34,10 @@ dialog{background:radial-gradient(ellipse at 10% 10%,#f4e8d9aa,transparent 55%),
 dialog:after{content:'';position:absolute;left:22px;top:13px;width:100px;height:28px;background:url('./assets/floral-flourish.svg') center/contain no-repeat;opacity:.75;pointer-events:none}
 .encounter-copy h2{font-size:44px;line-height:1.05;letter-spacing:-.8px}
 .footer-flourish{width:90px;height:24px;display:block;opacity:.8}
+.footer-credit{display:grid;gap:7px}
+.powered-by{color:inherit;font-size:11px;text-underline-offset:3px;text-decoration-thickness:1px}
+.powered-by:hover{color:var(--ink)}
+.powered-by:focus-visible{outline-color:var(--control-focus,#80517b)}
 @media(max-width:760px){h1{font-size:76px;letter-spacing:-1px}.story-flourish{margin:0 auto 18px;width:130px;height:29px}.encounter-copy h2{font-size:39px}.footer-flourish{width:45px}.places button:before{inset:3px}}
 @media(max-width:350px){h1{font-size:67px}}
 /* A quiet invitation: a small, continuous bob without hover jumps. */
