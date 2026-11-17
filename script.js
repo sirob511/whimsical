@@ -30,22 +30,20 @@ const encounters = {
 };
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let sceneChanging = false;
-async function transitionScene(update){
+async function transitionScene(update,selector='.experience'){
  if(sceneChanging)return;
  sceneChanging=true;
- const scene=$('.experience');
+ const targets=document.querySelectorAll(selector);
  const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
  try{
   if(!reducedMotion.matches){
-   scene.style.transition='opacity 220ms ease-in';
-   scene.style.opacity='0';
+   targets.forEach(target=>{target.style.transition='opacity 220ms ease-in';target.style.opacity='0';});
    await wait(220);
   }
   update();
-  scene.style.transition='opacity 650ms ease-out';
-  scene.style.opacity='1';
+  targets.forEach(target=>{target.style.transition='opacity 650ms ease-out';target.style.opacity='1';});
   if(!reducedMotion.matches)await wait(650);
- }finally{scene.style.removeProperty('opacity');scene.style.removeProperty('transition');sceneChanging=false;}
+ }finally{targets.forEach(target=>{target.style.removeProperty('opacity');target.style.removeProperty('transition');});sceneChanging=false;}
 }
 // Fade in the illustration only once its local image has decoded.
 const planetArt=$('.planet');
@@ -74,8 +72,8 @@ async function closeEncounter(){
 }
 $('#encounter').addEventListener('cancel', event=>{event.preventDefault();closeEncounter();});
 $('.close').addEventListener('click',closeEncounter);$('#back').addEventListener('click',closeEncounter);$('#replay').addEventListener('click',renderEncounter);
-function finishEncounter(){visited.add(currentPlace);document.querySelectorAll('.places button').forEach(b=>{const done=visited.has(b.dataset.place);b.classList.toggle('done',done);b.setAttribute('aria-label',`${encounters[b.dataset.place].kicker.split(' / ')[1].toLowerCase()}${done?', discovered — replay':''}`);});$('.progress').textContent=`${visited.size} of 3 little wonders discovered`;if(visited.size===3){transitionScene(()=>{$('#explore').hidden=true;$('#ending').hidden=false;document.body.classList.add('dawn');$('#ending-title').focus();});}else{returnFocus.focus();}}
-$('#reset').addEventListener('click',()=>transitionScene(()=>{visited.clear();document.body.classList.remove('dawn');$('#ending').hidden=true;$('#explore').hidden=false;document.querySelectorAll('.places button').forEach(b=>{b.classList.remove('done');b.removeAttribute('aria-label');});$('.progress').textContent='0 of 3 little wonders discovered';$('#explore-title').focus();}));
+function finishEncounter(){visited.add(currentPlace);document.querySelectorAll('.places button').forEach(b=>{const done=visited.has(b.dataset.place);b.classList.toggle('done',done);b.setAttribute('aria-label',`${encounters[b.dataset.place].kicker.split(' / ')[1].toLowerCase()}${done?', discovered — replay':''}`);});$('.progress').textContent=`${visited.size} of 3 little wonders discovered`;if(visited.size===3){transitionScene(()=>{$('#explore').hidden=true;$('#ending').hidden=false;document.body.classList.add('dawn');$('#ending-title').focus();},'.copy');}else{returnFocus.focus();}}
+$('#reset').addEventListener('click',()=>transitionScene(()=>{visited.clear();document.body.classList.remove('dawn');$('#ending').hidden=true;$('#explore').hidden=false;document.querySelectorAll('.places button').forEach(b=>{b.classList.remove('done');b.removeAttribute('aria-label');});$('.progress').textContent='0 of 3 little wonders discovered';$('#explore-title').focus();},'.copy'));
 const music=$('#music');let soundOn=false,fadeFrame=0,soundVersion=0;
 function fade(target,after){cancelAnimationFrame(fadeFrame);const start=music.volume,t0=performance.now();function tick(t){const p=Math.min(1,(t-t0)/800);music.volume=start+(target-start)*p;if(p<1)fadeFrame=requestAnimationFrame(tick);else if(after)after();}fadeFrame=requestAnimationFrame(tick);}
 function soundUI(){ $('#sound').setAttribute('aria-pressed',String(soundOn));$('#sound-label').textContent=soundOn?'Sound on':'Sound off'; }
